@@ -2,7 +2,7 @@
 
 ## Installation
 ```
-composer require jackal/video-downloader-ext-Facebook
+composer require jackal/video-downloader-ext-facebook
 ```
 
 ## Usage
