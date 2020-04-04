@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Jackal\Downloader\Ext\Facebook\Crawler;
-
 
 use Jackal\Downloader\Ext\Facebook\Exception\FacebookDownloadException;
 use Symfony\Component\DomCrawler\Crawler;

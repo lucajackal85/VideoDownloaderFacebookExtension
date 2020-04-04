@@ -5,8 +5,6 @@ namespace Jackal\Downloader\Ext\Facebook\Downloader;
 use GuzzleHttp\Client;
 use Jackal\Downloader\Downloader\AbstractDownloader;
 use Jackal\Downloader\Ext\Facebook\Crawler\FacebookCrawler;
-use Jackal\Downloader\Ext\Facebook\Exception\FacebookDownloadException;
-use Symfony\Component\DomCrawler\Crawler;
 
 class FacebookDownloader extends AbstractDownloader
 {
