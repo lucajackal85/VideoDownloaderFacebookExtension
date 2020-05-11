@@ -5,7 +5,7 @@
     "license": "MIT",
     "require": {
         "php": ">=7.1",
-        "jackal/video-downloader": "dev-development",
+        "jackal/video-downloader": "^0.5",
         "guzzlehttp/guzzle": "^6.5",
         "symfony/dom-crawler": ">=3.4",
         "symfony/css-selector": ">=3.4"
