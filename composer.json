@@ -1,11 +1,11 @@
 {
-    "name": "jackal/video-download-ext-facebook",
+    "name": "jackal/video-downloader-ext-facebook",
     "description": "\"Download Facebook Video\"",
     "type": "library",
     "license": "MIT",
     "require": {
         "php": ">=7.1",
-        "jackal/video-downloader": "^0.4",
+        "jackal/video-downloader": "dev-development",
         "guzzlehttp/guzzle": "^6.5",
         "symfony/dom-crawler": ">=3.4",
         "symfony/css-selector": ">=3.4"
