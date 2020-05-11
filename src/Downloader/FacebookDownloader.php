@@ -8,8 +8,6 @@ use Jackal\Downloader\Ext\Facebook\Crawler\FacebookCrawler;
 
 class FacebookDownloader extends AbstractDownloader
 {
-    const VIDEO_TYPE = 'facebook';
-
     public function getURL(): string
     {
         $client = new Client([
@@ -28,5 +26,15 @@ class FacebookDownloader extends AbstractDownloader
 
         return array_key_exists('hd', $results) ? $results['hd'] : $results['sd'];
 
+    }
+
+    public static function getPublicUrlRegex(): string
+    {
+        return '/facebook\.com\/(?:.*)(?:videos?|watch)(?:.*)(?:%2F|\/|v=)([\d]+)/i';
+    }
+
+    public static function getType(): string
+    {
+        return 'facebook';
     }
 }
