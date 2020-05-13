@@ -8,24 +8,46 @@ use Jackal\Downloader\Ext\Facebook\Crawler\FacebookCrawler;
 
 class FacebookDownloader extends AbstractDownloader
 {
+    protected $downloadLinks = [];
+
+    /**
+     * @return array
+     * @throws \Jackal\Downloader\Ext\Facebook\Exception\FacebookDownloadException
+     */
+    protected function getDownloadLinks() : array{
+        if($this->downloadLinks == []){
+            $client = new Client([
+                'base_uri' => 'https://fbdown.net/it/',
+            ]);
+
+            $response = $client->post('download.php', [
+                'form_params' => ['URLz' => 'https://www.facebook.com/watch/?v=' . $this->getVideoId()],
+            ]);
+
+            $crawler = new FacebookCrawler($response->getBody()->getContents());
+            $this->downloadLinks = $crawler->getFacebookURLs($this->getFormats());
+        }
+
+        return $this->downloadLinks;
+    }
+
+    /**
+     * @return string
+     * @throws \Jackal\Downloader\Exception\DownloadException
+     */
     public function getURL(): string
     {
-        $client = new Client([
-            'base_uri' => 'https://fbdown.net/it/',
-        ]);
-
-        $response = $client->post('download.php', [
-            'form_params' => ['URLz' => 'https://www.facebook.com/watch/?v=' . $this->getVideoId()],
-        ]);
-
-        $crawler = new FacebookCrawler($response->getBody()->getContents());
-
-        $results = $crawler->getFacebookURLs($this->getFormats());
-
-        $results = $this->filterByFormats($results);
-
+        $results = $this->filterByFormats($this->getDownloadLinks());
         return array_key_exists('hd', $results) ? $results['hd'] : $results['sd'];
+    }
 
+    /**
+     * @return array
+     * @throws \Jackal\Downloader\Ext\Facebook\Exception\FacebookDownloadException
+     */
+    public function getFormatsAvailable(): array
+    {
+        return array_keys($this->getDownloadLinks());
     }
 
     public static function getPublicUrlRegex(): string
